@@ -13,43 +13,54 @@ You need three things:
 
 | | |
 |---|---|
-| **A Mac** | macOS 12 (Monterey) or newer, Apple silicon |
+| **A Mac or a PC** | macOS 12 (Monterey) or newer, Apple silicon · or Windows 10 or newer |
 | **A Claude subscription** | Pro or Max. The app uses *your* account |
 | **~500 MB free** | 106 MB to download, more for the videos you work on |
 
-You do **not** need Python, Homebrew, or ffmpeg. Those come bundled.
+You do **not** need Python, Homebrew, winget, or ffmpeg. Those come bundled.
 
 ---
 
 ## 1. Install
 
-Open **Terminal** and paste this:
+**On a Mac** — open **Terminal** and paste this:
 
 ```sh
 curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.sh | sh
 ```
 
-It downloads about 106 MB, checks it arrived intact, and puts a `clip-studio`
-command in `~/.local/bin`. Nothing is installed system-wide and it never asks
-for your password.
+**On Windows** — open **PowerShell** and paste this:
 
-You will probably see a note that `~/.local/bin` is not on your PATH. **You can
-ignore it** — just use the full path below. If you would rather type
-`clip-studio` on its own, run the line the installer prints, then open a new
-Terminal window.
+```powershell
+irm https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.ps1 | iex
+```
+
+Either way it downloads about 100 MB, checks it arrived intact, and puts a
+`clip-studio` command on your PATH. Nothing is installed system-wide and it
+never asks for your password or administrator rights.
+
+On a Mac you may see a note that `~/.local/bin` is not on your PATH. **You can
+ignore it** — just use the full path below. On Windows, **open a new terminal
+window** after installing, so it picks up the change.
 
 ---
 
 ## 2. Start it
 
 ```sh
-~/.local/bin/clip-studio
+clip-studio
 ```
+
+On a Mac, if that is not found, use the full path `~/.local/bin/clip-studio`.
 
 Your browser opens by itself.
 
-> **The first launch takes about 20 seconds.** macOS checks new programs the
-> first time they run. Every launch after that is under a second.
+> **The first launch takes about 20 seconds.** macOS and Windows both check new
+> programs the first time they run. Every launch after that is under a second.
+> Windows may also show a **"Windows protected your PC"** box — click *More
+> info*, then *Run anyway*. That appears because the build is not code-signed,
+> which costs a few hundred dollars a year; the download's checksum is verified
+> by the installer instead.
 
 ---
 
@@ -129,13 +140,20 @@ says *command not found*, you are on an old version: reinstall with the command
 in step 1.
 
 **`clip-studio: command not found`.**
-Use the full path `~/.local/bin/clip-studio`, or add that folder to your PATH.
+On a Mac, use the full path `~/.local/bin/clip-studio`, or add that folder to
+your PATH. On Windows, close the terminal and open a new one — the PATH change
+only applies to windows opened after installing.
 
 **"Claude is not signed in" while running a stage.**
-Run `~/.local/bin/claude auth login`.
+Run `claude auth login`.
 
 **The download 404s.**
-Your Mac is probably Intel. Only Apple silicon builds are published so far.
+There is no build published for your machine yet. Apple silicon Macs and 64-bit
+Windows are covered; Intel Macs and Windows on ARM are not.
+
+**Windows says it cannot run scripts.**
+Run PowerShell as your normal user and paste:
+`Set-ExecutionPolicy -Scope Process Bypass -Force`, then the install line again.
 
 **Everything is slow, or nothing appears for 20 seconds.**
 Only the very first launch after installing. Later launches are immediate.
@@ -146,8 +164,8 @@ Only the very first launch after installing. Later launches are immediate.
 
 | | |
 |---|---|
-| Videos, transcripts, clips data | `~/Library/Application Support/Clip Studio` |
-| Exported clips | `~/Documents/Clipping` |
+| Videos, transcripts, clips data | macOS: `~/Library/Application Support/Clip Studio`<br>Windows: `%LOCALAPPDATA%\Clip Studio` |
+| Exported clips | `Documents\Clipping` (either) |
 
 Uninstalling does not touch either. They are yours.
 
