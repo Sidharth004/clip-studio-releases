@@ -13,7 +13,7 @@ You need three things:
 
 | | |
 |---|---|
-| **A Mac or a PC** | macOS 12 (Monterey) or newer, Apple silicon · or Windows 10 or newer |
+| **An Apple silicon Mac** | macOS 12 (Monterey) or newer, on M1 or later. Intel Macs and Windows are not built yet — see [Which machines](#which-machines) |
 | **A Claude subscription** | Pro or Max. The app uses *your* account |
 | **~500 MB free** | 106 MB to download, more for the videos you work on |
 
@@ -29,19 +29,30 @@ You do **not** need Python, Homebrew, winget, or ffmpeg. Those come bundled.
 curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.sh | sh
 ```
 
-**On Windows** — open **PowerShell** and paste this:
+It downloads about 100 MB, checks it arrived intact, and puts a `clip-studio`
+command on your PATH. Nothing is installed system-wide and it never asks for
+your password or administrator rights.
+
+You may see a note that `~/.local/bin` is not on your PATH. **You can ignore
+it** — just use the full path below.
+
+<a id="which-machines"></a>
+### Which machines
+
+| | |
+|---|---|
+| **Apple silicon Mac** (M1 or later) | ✅ available now |
+| **Intel Mac** | ❌ not built. The installer says so rather than failing oddly |
+| **Windows 10/11** | ⏳ supported by the app, but no build is published yet |
+
+Windows is not a gap in the program — the installer, the build script and the
+platform layer are all written and tested against it. The build simply has to be
+compiled *on* a Windows machine, which has not happened yet. When it does, a
+`clip-studio-windows-x64.zip` appears in the same release and this becomes:
 
 ```powershell
 irm https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.ps1 | iex
 ```
-
-Either way it downloads about 100 MB, checks it arrived intact, and puts a
-`clip-studio` command on your PATH. Nothing is installed system-wide and it
-never asks for your password or administrator rights.
-
-On a Mac you may see a note that `~/.local/bin` is not on your PATH. **You can
-ignore it** — just use the full path below. On Windows, **open a new terminal
-window** after installing, so it picks up the change.
 
 ---
 
@@ -55,7 +66,7 @@ On a Mac, if that is not found, use the full path `~/.local/bin/clip-studio`.
 
 Your browser opens by itself.
 
-> **The first launch takes about 20 seconds.** macOS and Windows both check new
+> **The first launch takes about 20 seconds.** macOS checks new
 > programs the first time they run. Every launch after that is under a second.
 > Windows may also show a **"Windows protected your PC"** box — click *More
 > info*, then *Run anyway*. That appears because the build is not code-signed,
@@ -148,8 +159,9 @@ only applies to windows opened after installing.
 Run `claude auth login`.
 
 **The download 404s.**
-There is no build published for your machine yet. Apple silicon Macs and 64-bit
-Windows are covered; Intel Macs and Windows on ARM are not.
+There is no build published for your machine yet. Only Apple silicon Macs are
+covered today — Intel Macs and Windows are not. See
+[Which machines](#which-machines).
 
 **Windows says it cannot run scripts.**
 Run PowerShell as your normal user and paste:
