@@ -95,6 +95,19 @@ behind your back.
 *Why:* the app runs Claude on your machine, using your subscription. It never
 sees your password, and nobody else is billed for what you do.
 
+### Checking or changing the account
+
+Click the **claude CLI ready** pill in the top bar. It shows which account is
+in use and offers two different exits:
+
+- **Disconnect** stops Clip Studio using Claude. Your Claude Code sign-in is
+  untouched — every Terminal keeps working — and one click reconnects. While
+  disconnected, trimming, framing, captions and export all still work; only
+  the AI stages are unavailable.
+- **Sign out everywhere** signs out Claude Code across the whole Mac, not just
+  this app, because the app has no separate login of its own. You will need to
+  sign in again to use Claude anywhere.
+
 ---
 
 ## 4. Use it
