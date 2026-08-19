@@ -15,9 +15,10 @@ You need three things:
 |---|---|
 | **An Apple silicon Mac** | macOS 12 (Monterey) or newer, on M1 or later. Intel Macs and Windows are not built yet — see [Which machines](#which-machines) |
 | **A Claude subscription** | Pro or Max. The app uses *your* account |
-| **~500 MB free** | 106 MB to download, more for the videos you work on |
+| **~700 MB free** | 143 MB to download, more for the videos you work on |
 
-You do **not** need Python, Homebrew, winget, or ffmpeg. Those come bundled.
+You do **not** need Python, Homebrew, winget, ffmpeg, yt-dlp or Deno. Every
+tool the app uses is bundled with it.
 
 ---
 
@@ -29,7 +30,7 @@ You do **not** need Python, Homebrew, winget, or ffmpeg. Those come bundled.
 curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.sh | sh
 ```
 
-It downloads about 100 MB, checks it arrived intact, and puts a `clip-studio`
+It downloads about 143 MB, checks it arrived intact, and puts a `clip-studio`
 command on your PATH. Nothing is installed system-wide and it never asks for
 your password or administrator rights.
 
