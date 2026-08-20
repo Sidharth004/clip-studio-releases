@@ -31,11 +31,17 @@ curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/d
 ```
 
 It downloads about 143 MB, checks it arrived intact, and puts a `clip-studio`
-command on your PATH. Nothing is installed system-wide and it never asks for
-your password or administrator rights.
+command on your PATH — adding the line to your shell profile for you. Nothing
+is installed system-wide and it never asks for your password or administrator
+rights.
 
-You may see a note that `~/.local/bin` is not on your PATH. **You can ignore
-it** — just use the full path below.
+If Claude Code is not already installed, it asks whether to install it and
+does so if you say yes. Answer `n` to skip; the app runs without it, minus the
+AI stages.
+
+The very first run has one catch: the shell you typed the command in loaded
+its PATH before the installer changed it. The installer prints a full path
+that works immediately — or open a new terminal and `clip-studio` is enough.
 
 <a id="which-machines"></a>
 ### Which machines
@@ -78,8 +84,12 @@ Your browser opens by itself.
 
 ## 3. Connect Claude
 
-On first run you will see a setup screen. Everything except Claude should
-already have a tick — `ffmpeg` and `yt-dlp` ship with the app.
+If you let the installer set up Claude Code, most of this is already done —
+you only need to sign in.
+
+On first run you will see a setup screen if anything is still missing.
+`ffmpeg` and `yt-dlp` ship with the app, so Claude is usually the only row
+wanting attention.
 
 For Claude, click the button:
 
