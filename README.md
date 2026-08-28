@@ -12,9 +12,9 @@ there is no account with us, and nothing is billed by us.
 
 | | |
 |---|---|
-| **A Mac or a PC** | Apple silicon Mac (M1 or later), macOS 12+ · or Windows 10/11 on a 64-bit Intel/AMD CPU |
+| **A Mac or a PC** | Apple silicon Mac (M1 or later), macOS 13+ · or Windows 10/11 on a 64-bit Intel/AMD CPU |
 | **A Claude subscription** | Pro or Max. The app uses *your* account |
-| **~1 GB free** | for the app, plus room for the videos you work on |
+| **~1.5 GB free** | for the app, plus room for the videos you work on |
 
 Nothing else. Python, ffmpeg, yt-dlp and Deno are all bundled.
 
@@ -30,7 +30,7 @@ Open **Terminal** and paste:
 curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.sh | sh
 ```
 
-Downloads ~143 MB, verifies it, and puts `clip-studio` on your PATH. Nothing is
+Downloads ~222 MB, verifies it, and puts `clip-studio` on your PATH. Nothing is
 installed system-wide and it never asks for your password.
 
 If Claude Code is missing it offers to install it — answer `n` to skip.
@@ -46,7 +46,7 @@ Open **PowerShell** and paste:
 irm https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.ps1 | iex
 ```
 
-Downloads ~199 MB and verifies it.
+Downloads ~244 MB and verifies it.
 
 **Then open a new PowerShell window** — the PATH change only applies to windows
 opened afterwards.
