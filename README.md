@@ -12,13 +12,13 @@ there is no account with us, and nothing is billed by us.
 
 | | |
 |---|---|
-| **A Mac or a PC** | Apple silicon Mac (M1 or later), macOS 13+ · or Windows 10/11 on a 64-bit Intel/AMD CPU |
+| **A Mac, a PC or a Linux box** | Apple silicon Mac (M1 or later) on macOS 13+ · Windows 10/11 on x64 · Linux on x64 with glibc 2.35+ (Ubuntu 22.04 or newer, Debian 12, Fedora 36+) |
 | **A Claude subscription** | Pro or Max. The app uses *your* account |
 | **~1.5 GB free** | for the app, plus room for the videos you work on |
 
 Nothing else. Python, ffmpeg, yt-dlp and Deno are all bundled.
 
-Not yet available: Intel Macs, and Windows on ARM.
+Not yet available: Intel Macs, Windows on ARM, and Linux on ARM.
 
 ---
 
@@ -37,6 +37,21 @@ If Claude Code is missing it offers to install it — answer `n` to skip.
 
 **Then open a new Terminal.** The one you typed in loaded its PATH before the
 installer changed it. (Or use the full path the installer prints.)
+
+## Install — Linux
+
+Open a terminal and paste:
+
+```sh
+curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.sh | sh
+```
+
+The same command as macOS — it works out which build you need.
+
+**Then open a new terminal**, or run `~/.local/bin/clip-studio` directly.
+
+For the file picker to work, install `zenity` (GNOME) or `kdialog` (KDE). Without
+one you can still paste a path by hand; everything else works either way.
 
 ## Install — Windows
 
@@ -76,6 +91,7 @@ checksum instead):
 
 - **macOS** — right-click the app and choose *Open*, if prompted.
 - **Windows** — *"Windows protected your PC"* → **More info** → **Run anyway**.
+- **Linux** — nothing to dismiss.
 
 ### Connecting Claude
 
@@ -144,7 +160,7 @@ There is no build for your machine yet — see *What you need*.
 
 | | |
 |---|---|
-| Videos, transcripts, clips | macOS `~/Library/Application Support/Clip Studio`<br>Windows `%LOCALAPPDATA%\Clip Studio` |
+| Videos, transcripts, clips | macOS `~/Library/Application Support/Clip Studio`<br>Windows `%LOCALAPPDATA%\Clip Studio`<br>Linux `~/.local/share/clip-studio` |
 | Exported clips | `Documents/Clipping` on both |
 
 Uninstalling leaves both alone. They are yours.
