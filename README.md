@@ -12,15 +12,21 @@ There is no account to make, and we never charge you anything.
 
 **1. The right computer**
 
-| You have | Works? |
+| You have | Which version you get |
 |---|---|
-| Mac with Apple silicon (M1, M2, M3, M4) | Yes |
-| Windows 10 or 11 | Yes |
-| Linux on a 64-bit PC | Yes |
-| Older Intel Mac | Not yet |
+| Mac with Apple silicon (M1, M2, M3, M4) | **0.3.7** — the newest |
+| Windows 10 or 11 | 0.3.6 — one version behind |
+| Linux on a 64-bit PC | 0.3.6 — one version behind |
+| Older Intel Mac | Not supported yet |
 
 Not sure if your Mac is Apple silicon? Click the Apple menu → **About This
 Mac**. If the chip says "M" and a number, you're good.
+
+**Windows and Linux people:** the newest version is Mac-only at the moment.
+Each version has to be built on the kind of computer it runs on, and the
+Windows and Linux ones aren't ready yet. You can still install 0.3.6 — the
+instructions below tell you how, and it works fine. You just won't have the
+most recent fixes.
 
 **2. A Claude Pro or Max subscription**
 
@@ -62,11 +68,16 @@ typed in doesn't know about the new app yet.
 
 Open **PowerShell**. (Press the Windows key, type "powershell", hit Enter.)
 
-Paste this and press Enter:
+Paste these **two** lines and press Enter:
 
 ```powershell
-irm https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.ps1 | iex
+$env:CLIP_STUDIO_VERSION = "v0.3.6"
+irm https://github.com/Sidharth004/clip-studio-releases/releases/download/v0.3.6/install.ps1 | iex
 ```
+
+The first line is what gets you 0.3.6, the newest Windows build. Leave it out
+and the install will fail with a "not found" error, because the very latest
+release is Mac-only right now.
 
 **Now close PowerShell and open a fresh one.**
 
@@ -78,13 +89,17 @@ Set-ExecutionPolicy -Scope Process Bypass -Force
 
 ### On Linux
 
-Open a terminal and paste the same line Mac users use:
+Open a terminal and paste this:
 
 ```sh
-curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.sh | sh
+curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/download/v0.3.6/install.sh | CLIP_STUDIO_VERSION=v0.3.6 sh
 ```
 
-It figures out which version you need. Then open a fresh terminal.
+The `v0.3.6` bits are what gets you the newest Linux build. Without them the
+install fails with a "not found" error, because the very latest release is
+Mac-only right now.
+
+Then open a fresh terminal.
 
 To get the "choose a file" button working, install `zenity` or `kdialog` first.
 Without one you can still type file paths by hand.
@@ -199,9 +214,12 @@ app download it again.
 
 Run `claude auth login` in a terminal, then try the step again.
 
-**The download gives a 404 error**
+**The download gives a 404 or "not found" error**
 
-There's no build for your computer yet. Check the table at the top.
+On Windows or Linux, this almost always means you left out the `v0.3.6` part of
+the command. Go back to your install step and copy the whole thing.
+
+On a Mac, it means your Mac is too old — the Intel ones aren't supported yet.
 
 ### When your licence won't accept
 
