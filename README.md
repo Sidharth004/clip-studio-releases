@@ -1,179 +1,254 @@
 # Clip Studio
 
-Turn a YouTube video into a transcript, chapters, titles and short-form clips —
-then trim, reframe, caption and export them.
+Give it a video. Get back a transcript, chapters, titles, and short clips ready
+for TikTok, Reels or Shorts — trimmed, reframed and captioned.
 
-Everything runs on your own machine. Your video and transcript never leave it,
-there is no account with us, and nothing is billed by us.
+Everything happens on your own computer. Your videos never get uploaded to us.
+There is no account to make, and we never charge you anything.
 
 ---
 
-## What you need
+## Before you start, you need three things
 
-| | |
+**1. The right computer**
+
+| You have | Works? |
 |---|---|
-| **A Mac, a PC or a Linux box** | Apple silicon Mac (M1 or later) on macOS 13+ · Windows 10/11 on x64 · Linux on x64 with glibc 2.35+ (Ubuntu 22.04 or newer, Debian 12, Fedora 36+) |
-| **A Claude subscription** | Pro or Max. The app uses *your* account |
-| **~1.5 GB free** | for the app, plus room for the videos you work on |
+| Mac with Apple silicon (M1, M2, M3, M4) | Yes |
+| Windows 10 or 11 | Yes |
+| Linux on a 64-bit PC | Yes |
+| Older Intel Mac | Not yet |
 
-Nothing else. Python, ffmpeg, yt-dlp and Deno are all bundled.
+Not sure if your Mac is Apple silicon? Click the Apple menu → **About This
+Mac**. If the chip says "M" and a number, you're good.
 
-Not yet available: Intel Macs, Windows on ARM, and Linux on ARM.
+**2. A Claude Pro or Max subscription**
+
+The app uses *your* Claude account to do the thinking. It does not come with
+one, and there's no free tier that works. If you don't have Claude Pro or Max,
+the app will install and run but the clip-finding won't.
+
+**3. A licence key**
+
+Ask Sid for one. It's a short code that looks like `PHfbdVQhpvvl5g5stxg8Kt1`.
+Without it the app opens, but every AI step stays locked.
+
+You'll also want about **1.5 GB of free space**, plus room for your videos.
+
+You do *not* need to install Python, ffmpeg, yt-dlp or anything else. They come
+bundled inside.
 
 ---
 
-## Install — macOS
+## Step 1 — Install it
 
-Open **Terminal** and paste:
+### On a Mac
 
-```sh
-curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.sh | sh
-```
+Open the **Terminal** app. (Press ⌘ + Space, type "terminal", hit Enter.)
 
-Downloads ~222 MB, verifies it, and puts `clip-studio` on your PATH. Nothing is
-installed system-wide and it never asks for your password.
-
-If Claude Code is missing it offers to install it — answer `n` to skip.
-
-**Then open a new Terminal.** The one you typed in loaded its PATH before the
-installer changed it. (Or use the full path the installer prints.)
-
-## Install — Linux
-
-Open a terminal and paste:
+Copy this whole line, paste it in, and press Enter:
 
 ```sh
 curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.sh | sh
 ```
 
-The same command as macOS — it works out which build you need.
+It downloads about 250 MB and checks the file arrived intact. It does not ask
+for your password and does not change anything outside your own folders.
 
-**Then open a new terminal**, or run `~/.local/bin/clip-studio` directly.
+**Now close Terminal and open a fresh one.** This matters. The window you just
+typed in doesn't know about the new app yet.
 
-For the file picker to work, install `zenity` (GNOME) or `kdialog` (KDE). Without
-one you can still paste a path by hand; everything else works either way.
+### On Windows
 
-## Install — Windows
+Open **PowerShell**. (Press the Windows key, type "powershell", hit Enter.)
 
-Open **PowerShell** and paste:
+Paste this and press Enter:
 
 ```powershell
 irm https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.ps1 | iex
 ```
 
-Downloads ~244 MB and verifies it.
+**Now close PowerShell and open a fresh one.**
 
-**Then open a new PowerShell window** — the PATH change only applies to windows
-opened afterwards.
-
-If it refuses to run scripts, paste this first, then the line above:
+If Windows says it won't run scripts, paste this first, then try again:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass -Force
 ```
 
+### On Linux
+
+Open a terminal and paste the same line Mac users use:
+
+```sh
+curl -fsSL https://github.com/Sidharth004/clip-studio-releases/releases/latest/download/install.sh | sh
+```
+
+It figures out which version you need. Then open a fresh terminal.
+
+To get the "choose a file" button working, install `zenity` or `kdialog` first.
+Without one you can still type file paths by hand.
+
 ---
 
-## First run
+## Step 2 — Start it
+
+In your fresh terminal window, type:
 
 ```sh
 clip-studio
 ```
 
-Your browser opens by itself.
+Your web browser opens on its own. That's the app.
 
-**The first launch takes about 20 seconds** — your operating system checks new
-programs once. Every launch after that is under a second.
+**Two things will look alarming the first time. Both are normal.**
 
-You will also see a warning the first time, because the app is not code-signed
-(that costs a few hundred dollars a year; the installer verifies the download's
-checksum instead):
+*It takes about 20 seconds to start.* Your computer scans new programs once.
+After that it opens in under a second.
 
-- **macOS** — right-click the app and choose *Open*, if prompted.
-- **Windows** — *"Windows protected your PC"* → **More info** → **Run anyway**.
+*Your computer warns you the app is unsafe.* This is because the app isn't
+"code-signed" — a certificate that costs hundreds of dollars a year. The
+installer checks the download's fingerprint instead, which does the same job.
+To get past the warning:
+
+- **Mac** — right-click the app, choose **Open**.
+- **Windows** — click **More info**, then **Run anyway**.
 - **Linux** — nothing to dismiss.
 
-### Connecting Claude
+---
 
-A setup screen appears if anything is missing. ffmpeg and yt-dlp ship with the
-app, so Claude is usually the only row needing attention. Click **Install** or
-**Sign in** — a terminal opens so you can watch it happen — then leave the
-screen alone; it closes itself.
+## Step 3 — Paste in your licence key
 
-To check or change the account later, click the **claude CLI ready** pill in the
-top bar. **Disconnect** stops just this app using Claude. **Sign out everywhere**
-signs Claude Code out across the whole machine.
+The first screen asks for it. Paste the code Sid gave you and press Enter.
+
+It should say **active** with a number of days remaining.
+
+If it says something else, see *When your licence won't accept* below.
 
 ---
 
-## Using it
+## Step 4 — Connect your Claude account
 
-Paste a YouTube link and press **Add**. The app fetches captions, cleans up the
-transcript, then writes a summary, chapters and titles.
+A setup screen shows you what's missing. ffmpeg and yt-dlp are already built
+in, so usually Claude is the only row that needs anything.
 
-Before finding clips it **pauses and asks what you want** — for example *"only
-founder hot takes, not product updates"*. Clip-finding costs the most, so it
-asks first.
+Click **Install** or **Sign in**. A terminal window opens so you can watch it
+work. Then leave it alone — it closes by itself when it's done.
 
-**Start with a short video.** Every stage spends your Claude allowance, and an
-hour-long podcast is a big first bite.
+*Nothing seemed to happen?* The terminal it opened is probably hiding behind
+your browser window.
 
-To edit a clip you need the video file itself. Either **Choose a file…** (links
-it where it sits — nothing is copied) or **Download from YouTube**. Then press
-**✂ Edit** on any clip to trim, reframe to 9:16, caption and export.
+To change accounts later, click the **claude CLI ready** button in the top bar.
+Note the difference between the two exits there:
+
+- **Disconnect** — stops just this app from using Claude.
+- **Sign out everywhere** — signs you out of Claude on your whole computer,
+  including other tools. Use the first one unless you really mean the second.
 
 ---
 
-## Commands
+## Step 5 — Make some clips
 
-| | |
+Paste a YouTube link and press **Add**. The app pulls the captions, tidies up
+the transcript, then writes a summary, chapters and titles.
+
+Then it **stops and asks you what you're looking for**. Something like *"only
+the founder's hot takes, skip the product updates"*. It asks first because
+finding clips is the expensive part, and guessing wrong wastes your Claude
+allowance.
+
+**Please start with a short video.** Every step uses up some of your Claude
+allowance. A three-hour podcast as your first try is a big bite.
+
+To actually edit a clip, the app needs the video file, not just the captions:
+
+- **Choose a file…** — if you already have it. The app reads it where it sits
+  and doesn't copy it.
+- **Download from YouTube** — if you don't.
+
+Then press **✂ Edit** on any clip to trim it, reframe it to vertical, add
+captions and export.
+
+---
+
+## Useful commands
+
+| Type this | What it does |
 |---|---|
-| `clip-studio` | start it |
+| `clip-studio` | start the app |
 | `clip-studio update` | get the newest version |
-| `clip-studio --check` | what is installed, what is missing |
-| `clip-studio --port 9000` | if something else is using the usual port |
-| `clip-studio uninstall` | remove the program — **your videos and clips stay** |
+| `clip-studio --check` | list what's installed and what's missing |
+| `clip-studio --port 9000` | use a different port, if something clashes |
+| `clip-studio uninstall` | remove the app — **your videos and clips stay put** |
 
 ---
 
-## If something looks wrong
+## When something goes wrong
 
-**`clip-studio: command not found`**
-Open a new terminal. On macOS you can also use `~/.local/bin/clip-studio`.
+**"command not found"**
 
-**The video is black but I can hear sound**
-The file is in a format your browser cannot display. Disconnect the source and
-download it again.
+You're in the old terminal window. Open a fresh one. On a Mac you can also type
+the full path: `~/.local/bin/clip-studio`
 
-**"Claude is not signed in" during a stage**
-Run `claude auth login`.
+**The video plays but the picture is black**
 
-**Nothing happened when I clicked Install or Sign in**
-The terminal it opened is probably behind your browser.
+Your browser can't display that video format. Disconnect the file and let the
+app download it again.
 
-**The download 404s**
-There is no build for your machine yet — see *What you need*.
+**"Claude is not signed in" partway through**
+
+Run `claude auth login` in a terminal, then try the step again.
+
+**The download gives a 404 error**
+
+There's no build for your computer yet. Check the table at the top.
+
+### When your licence won't accept
+
+| It says | What it means | What to do |
+|---|---|---|
+| **active** | All good. | Nothing. |
+| **Enter a licence key** | No key saved yet. | Paste the code Sid gave you. |
+| **has not been confirmed yet** | The app can't reach the licence server to check your key. | Check your internet. If it still fails, tell Sid — the problem is on his end, not yours. |
+| **has not been confirmed for 7 days** | It worked before, but the app hasn't been able to re-check for a week. | Get back online and restart the app. If that doesn't fix it, tell Sid. |
+| **withdrawn** | Your key was turned off. | Ask Sid. |
+| **The trial ended** | Your key ran out. | Ask Sid for a new one. |
 
 ---
 
-## Where your things live
+## You're testing this — so please tell Sid
 
-| | |
+This is a test build. Things will break. That's the point.
+
+When something goes wrong, the three things most worth sending:
+
+1. **What you were doing** when it happened.
+2. **What it said** — a screenshot is perfect.
+3. **Your version and setup** — run `clip-studio --check` and send the output.
+
+---
+
+## Where your stuff is kept
+
+| What | Where |
 |---|---|
-| Videos, transcripts, clips | macOS `~/Library/Application Support/Clip Studio`<br>Windows `%LOCALAPPDATA%\Clip Studio`<br>Linux `~/.local/share/clip-studio` |
-| Exported clips | `Documents/Clipping` on both |
+| Videos, transcripts, clips | **Mac** `~/Library/Application Support/Clip Studio`<br>**Windows** `%LOCALAPPDATA%\Clip Studio`<br>**Linux** `~/.local/share/clip-studio` |
+| Clips you export | `Documents/Clipping` |
 
-Uninstalling leaves both alone. They are yours.
-
----
-
-## Privacy
-
-Your video and transcript never leave your machine. Claude runs locally through
-your own signed-in account, so nobody else is billed and we store nothing —
-there is no server. The only thing that goes out is what Claude Code itself
-sends to Anthropic on your behalf, exactly as when you use it directly.
+Uninstalling the app leaves all of it alone. It's yours.
 
 ---
 
-*Downloads only. The source lives in a private repository.*
+## Your privacy
+
+Your videos and transcripts stay on your computer. There is no server of ours
+for them to go to.
+
+Claude runs through your own signed-in account. That means nobody else sees your
+work and nobody else is billed for it. The only thing that leaves your machine
+is what Claude Code sends to Anthropic on your behalf — exactly the same as when
+you use Claude Code yourself.
+
+---
+
+*This page is for downloads only. The source code lives in a private repo.*
