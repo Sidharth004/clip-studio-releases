@@ -15,7 +15,7 @@ anything.
 
 | You have | Can you run it? |
 |---|---|
-| Mac with Apple silicon (M1, M2, M3, M4) | **Yes** — version 0.4.0 |
+| Mac with Apple silicon (M1, M2, M3, M4) | **Yes** — version 0.4.1 |
 | Windows 10 or 11 | Not yet |
 | Linux on a 64-bit PC | Not yet |
 | Older Intel Mac | Not yet |
@@ -126,6 +126,39 @@ captions and export.
 
 ---
 
+## Keeping it up to date
+
+Fixes land here regularly. To get them:
+
+```sh
+clip-studio update
+```
+
+That's the whole thing. It downloads the newest version, checks the
+fingerprint, and swaps it in. **Your videos, transcripts and clips are not
+touched** — they live in a separate folder and every version reads the same
+one.
+
+You don't have to watch for new versions. When you start the app it checks, and
+if there's something newer it tells you on the line after the web address.
+
+Stop the app first if it's running (press Ctrl + C in its terminal window), run
+the update, then start it again.
+
+### What's in each version
+
+**0.4.1** — Kick recordings download again. Kick quietly changed which of its
+two internal ids it will answer to, so a Kick link that worked when you added
+it could later fail with "may have expired" — or offer you no download
+qualities at all — for a recording that was still right there. The app now
+translates between the two ids itself, on every path that needs it, and
+remembers the answer.
+
+**0.4.0** — No licence key, ever. Earlier builds asked for one; this one
+doesn't, and never contacts us about it.
+
+---
+
 ## Useful commands
 
 | Type this | What it does |
@@ -153,6 +186,12 @@ app download it again.
 **"Claude is not signed in" partway through**
 
 Run `claude auth login` in a terminal, then try the step again.
+
+**A Kick link says the recording "may have expired", or offers no qualities**
+
+Run `clip-studio update` first — 0.4.1 fixed exactly this, and it was not your
+link's fault. If it still fails afterwards, the recording really is gone from
+Kick; check you can still play it in a browser.
 
 **The download gives a 404 or "not found" error**
 
